@@ -42,7 +42,7 @@ const SignInUpScreen: FC<Props> = ({ navigation }) => {
                 <Base.Text
                     style={{ color: 'white' }}
                 >
-                    로그인할꺼야
+                    로그인
                 </Base.Text>
             </Base.CenterButton>
             <Base.CenterButton
