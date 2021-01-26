@@ -17,7 +17,7 @@ type Props = {
 
 const Join_SignIn: FC<Props> = () => {
     const dispatch = useDispatch();
-    const [phoneNumber, setPhoneNumber] = useState('01999999999');
+    const [phoneNumber, setPhoneNumber] = useState('');
 
     const LoginButton = useCallback(() => {
         db.collection('Account')

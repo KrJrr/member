@@ -1,4 +1,4 @@
-import React, { FC, useCallback, useState, useMemo, useEffect } from 'react'
+import React, { FC, useCallback, useState, useMemo, useEffect , useRef} from 'react'
 import { AccessibilityInfo, Alert, FlatList, StyleSheet, Text, View, Dimensions, TouchableOpacity } from 'react-native'
 import FastImage from 'react-native-fast-image'
 import * as Base from '~/common/base'
@@ -39,14 +39,13 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
     const windowWidth = Dimensions.get('window').width;
     const windowHeight = Dimensions.get('window').height;
 
-    // const [arr, setArray] = useState<Array<string>>(data);
     const RecruitButton = useCallback(() => {
         navigation.navigate('RecruitScreen')
     }, [])
 
     useEffect(() => {
         dispatch(loadHomeDataAsync(true))
-
+       
         setTimeout(() => {
             updateAccountInfo()
         }, 4000);
@@ -243,6 +242,10 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
     }
         , []);
 
+        const refreshing = useRef(false);
+    const onRefresh = () => {
+        dispatch(loadHomeDataAsync(true))
+    }
     return (
         <Base.BaseView>
 
@@ -261,8 +264,8 @@ const HomeScreen: FC<Props> = ({ navigation }) => {
                     data={dataStaff}
                     renderItem={renderItem}
                     ListHeaderComponent={renderHeader}
-                // onRefresh={onRefresh}
-                // refreshing={refreshing.current}
+                    onRefresh={onRefresh}
+                    refreshing={refreshing.current}
                 />
             }
         </Base.BaseView >
